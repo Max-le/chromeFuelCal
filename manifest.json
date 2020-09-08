@@ -8,8 +8,9 @@
     "persistent" : false
   },
   "page_action": {
-    //What will appear when clicking on the extension's icon.
+    //html page that will appear when clicking on the extension's icon.
     "default_popup": "popup.html",
+    
     "default_icon": {
       "16": "images/gas-station.png",
       "32": "images/gas-station.png",
