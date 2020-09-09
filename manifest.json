@@ -2,15 +2,13 @@
   "name": "Fuel Calculator",
   "version": "1.0",
   "description": "Quickly estimate the cost of a car journey.",
-  "permissions": ["declarativeContent"],
+  "permissions": ["declarativeContent", "storage"],
   "background": {
     "scripts": ["background.js"], 
     "persistent" : false
   },
   "page_action": {
-    //html page that will appear when clicking on the extension's icon.
-    "default_popup": "popup.html",
-    
+    "default_popup": "popup.html",    
     "default_icon": {
       "16": "images/gas-station.png",
       "32": "images/gas-station.png",
@@ -18,6 +16,8 @@
       "128": "images/gas-station.png"
     }
   },
+
+  "options_page": "options.html",
   "icons": {
     "16": "images/gas-station.png",
     "32": "images/gas-station.png",
