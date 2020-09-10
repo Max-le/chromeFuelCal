@@ -2,7 +2,7 @@
   "name": "Fuel Calculator",
   "version": "1.0",
   "description": "Quickly estimate the cost of a car journey.",
-  "permissions": ["declarativeContent", "storage"],
+  "permissions": ["declarativeContent", "storage", "activeTab"],
   "background": {
     "scripts": ["background.js"], 
     "persistent" : false
