@@ -24,5 +24,12 @@
     "48": "images/gas-station.png",
     "128": "images/gas-station.png"
   },
+
+  "content_scripts": [
+    {
+    "matches": ["https://www.google.com/maps/*", "https://www.openstreetmap.org/*"], 
+    "js": ["contentScript.js"]
+    }
+  ],
   "manifest_version": 2
 }

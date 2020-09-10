@@ -1,8 +1,10 @@
+
+console.log("Content script - I was injected !")
 chrome.runtime.onMessage.addListener(
-    function(message, callback) {
-      if (message == "appendPriceTripNumbers"){
-        chrome.tabs.executeScript({
-          code: 'INSERT CODE HERE'
-        });
-      }
-   });
+  function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting == "hello")
+      sendResponse({farewell: "goodbye"});
+  });

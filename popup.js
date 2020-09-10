@@ -24,3 +24,14 @@ document.getElementById('form').addEventListener("submit",function(e) {
     // Should be triggered on form submit
     document.getElementById("result").innerHTML = ((litersPerKm)*kms * costLiterOfFuel).toFixed(2) + " "+ currency  ;
   });
+
+  
+document.getElementById("messageButton").addEventListener("click", function() {
+  console.log("send btn clicked ! 📧")
+    //chrome.tabs.query : Gets all tabs that have the specified properties, or all tabs if no properties are specified.
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
+        console.log(response.farewell);
+      });
+    });
+})
