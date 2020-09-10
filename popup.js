@@ -4,6 +4,8 @@ let litersPerKm ;
 let costLiterOfFuel;
 let currency;
 
+var costJourney; 
+
 chrome.storage.sync.get("currency", function(data){
   currency = data.currency;
 })
@@ -21,17 +23,17 @@ document.getElementById('form').addEventListener("submit",function(e) {
     /* do what you want with the form */
     kms = document.forms["form"]["distance"].value;
     console.log("Got values :", kms, " ", litersPerKm, " ",costLiterOfFuel )
-    // Should be triggered on form submit
-    document.getElementById("result").innerHTML = ((litersPerKm)*kms * costLiterOfFuel).toFixed(2) + " "+ currency  ;
+    costJourney = ((litersPerKm)*kms * costLiterOfFuel).toFixed(2) + " "+ currency;
+    document.getElementById("result").innerHTML =  costJourney ;
   });
 
-  
+//Test send message button
 document.getElementById("messageButton").addEventListener("click", function() {
   console.log("send btn clicked ! 📧")
     //chrome.tabs.query : Gets all tabs that have the specified properties, or all tabs if no properties are specified.
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
-        console.log(response.farewell);
-      });
+      var message = {costJourney: "123"}
+      message["costJourney"] = costJourney;
+      chrome.tabs.sendMessage(tabs[0].id, message);
     });
 })
