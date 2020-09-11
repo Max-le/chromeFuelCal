@@ -24,10 +24,16 @@ document.getElementById("messageButton").addEventListener("click", function() {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       console.log("Sending message 📧");
       chrome.tabs.sendMessage(tabs[0].id, {request: "SendMeTheTripDistance"}, function(response) {
-        var distance = response.distance.replace(/\D+/g, '');
+
+        if (response.distance != null){
+        var distance = parseInt(response.distance);
         console.log(distance);
         document.getElementById("distance").innerHTML = distance + " km";
         document.getElementById("estimation").innerHTML = estimateCost(litersPerKm, costLiterOfFuel, distance).toFixed("2") + " "+currency;
+        }
+        else {
+          document.getElementById("noTripWarning").hidden = false;
+        }
       });
     });
 });

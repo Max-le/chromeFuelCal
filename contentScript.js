@@ -13,6 +13,7 @@ chrome.runtime.onMessage.addListener(
     let divTripDistance = document.getElementsByClassName("section-directions-trip-distance")[0]; 
     if (divTripDistance == null){
       console.warn("Couldn't get element in DOM ! You may need to wait a bit before calling this function.")
+      return null; 
     }
     for (var i = 0; i < divTripDistance.children.length; i++) {
       child = divTripDistance.children[i];
