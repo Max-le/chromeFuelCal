@@ -25,13 +25,13 @@ document.getElementById("messageButton").addEventListener("click", function() {
       console.log("Sending message 📧");
       chrome.tabs.sendMessage(tabs[0].id, {request: "SendMeTheTripDistance"}, function(response) {
         console.log(response.distance);
-        addDistanceOnPopup();
+        UpdateElementOnPopup(distance);
       });
     });
 })
 
-function addDistanceOnPopup(distance) {
+function UpdateElementOnPopup(distance) {
   var distanceSpan = document.createElement("span");
-  distanceSpan.innerHTML = distance ; 
+  distanceSpan.innerHTML = distance; 
   document.getElementById("distance").appendChild(distanceSpan);
 }
