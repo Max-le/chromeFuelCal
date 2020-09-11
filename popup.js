@@ -20,11 +20,18 @@ chrome.storage.sync.get("costLiterOfFuel", function(data){
 
 //Test send message button
 document.getElementById("messageButton").addEventListener("click", function() {
-  console.log("send btn clicked ! 📧")
     //chrome.tabs.query : Gets all tabs that have the specified properties, or all tabs if no properties are specified.
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      console.log("Sending message 📧");
       chrome.tabs.sendMessage(tabs[0].id, {request: "SendMeTheTripDistance"}, function(response) {
         console.log(response.distance);
+        addDistanceOnPopup();
       });
     });
 })
+
+function addDistanceOnPopup(distance) {
+  var distanceSpan = document.createElement("span");
+  distanceSpan.innerHTML = distance ; 
+  document.getElementById("distance").appendChild(distanceSpan);
+}
