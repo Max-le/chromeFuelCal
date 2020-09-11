@@ -6,6 +6,7 @@ let currency;
 
 var costJourney; 
 
+//Get user settings from storage
 chrome.storage.sync.get("currency", function(data){
   currency = data.currency;
 })
