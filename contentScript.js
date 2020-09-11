@@ -1,22 +1,14 @@
 console.log("Content script - I was injected !")
 
-chrome.runtime.onMessage.addListener(
-  function(message) {
-    console.table(message);
-    if( message["costJourney"] != null) {
-      addCostInDOM(message["costJourney"]);
-    } else {
-      console.warn("costJourney is null")
+
+   function getTripDistanceFromDOM() {
+    let divTripDistance = document.getElementsByClassName("section-directions-trip-distance")[0]; 
+    if (divTripDistance == null){
+      console.warn("coudln't get element in DOM")
     }
-  });
-  
-  
-  function addCostInDOM(cost) {
-    //Code below will edit the DOM of the webpage.
-    let span = document.createElement("span");
-    span.innerHTML = cost;
-    document.getElementsByClassName("section-directions-trip-numbers")[0].appendChild(span);
+    for (var i = 0; i < divTripDistance.children.length; i++) {
+      child = divTripDistance.children[i];
+      if (child.innerHTML.includes("km")){ console.log(child.innerHTML) }
+    }  
   }
-  
-  
   
