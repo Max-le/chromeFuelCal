@@ -24,9 +24,9 @@ document.getElementById("messageButton").addEventListener("click", function() {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       console.log("Sending message 📧");
       chrome.tabs.sendMessage(tabs[0].id, {request: "SendMeTheTripDistance"}, function(response) {
-
         if (response.distance != null){
-        var distance = parseInt(response.distance);
+        console.log(response.distance);
+        var distance = removeUnit(response.distance);
         console.log(distance);
         document.getElementById("distance").innerHTML = distance + " km";
         document.getElementById("estimation").innerHTML = estimateCost(litersPerKm, costLiterOfFuel, distance).toFixed("2") + " "+currency;
@@ -41,4 +41,10 @@ document.getElementById("messageButton").addEventListener("click", function() {
 
 function estimateCost(litersPerKm, costLiter, distance){
   return litersPerKm * costLiter * distance;
+}
+
+function removeUnit(valueWithUnit) {
+  //Remove any character that is not a number or punctation(./,)
+  const regex =/[^0-9|.,]/gi;
+  return valueWithUnit.replace(regex, "");
 }
